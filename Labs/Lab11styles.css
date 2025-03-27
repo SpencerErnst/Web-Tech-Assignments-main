@@ -1,0 +1,204 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Container with grid layout */
+.container {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "nav nav"
+        "main aside"
+        "footer footer";
+    grid-template-columns: 900px 300px;
+    grid-gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styles */
+header {
+    grid-area: header;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navigation styles */
+nav {
+    grid-area: nav;
+    background-color: #444;
+    padding: 10px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+/* Main content styles */
+main {
+    grid-area: main;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+main h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 21px;
+}
+
+main h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #444;
+    font-size: 18px;
+}
+
+main p {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* Sidebar styles */
+aside {
+    grid-area: aside;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+aside h3 {
+    margin-bottom: 15px;
+    color: #444;
+    font-size: 18px;
+}
+
+.sidebar-image {
+    margin-bottom: 20px;
+}
+
+.sidebar-image img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.sidebar-image p {
+    text-align: center;
+    font-style: italic;
+    font-size: 16px;
+}
+
+/* Footer styles */
+footer {
+    grid-area: footer;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+footer p {
+    font-size: 16px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    /* Tablet and mobile layout */
+    .container {
+        grid-template-areas:
+            "header"
+            "nav"
+            "main"
+            "aside"
+            "footer";
+        grid-template-columns: 100%;
+    }
+    
+    /* Navigation changes to column */
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav li {
+        margin: 5px 0;
+    }
+    
+    /* Adjust font sizes for smaller screens */
+    header h1 {
+        font-size: 24px;
+    }
+    
+    main h2 {
+        font-size: 21px;
+    }
+    
+    main h3, aside h3 {
+        font-size: 18px;
+    }
+    
+    p {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Smaller mobile adjustments */
+    .container {
+        padding: 10px;
+        grid-gap: 10px;
+    }
+    
+    header, main, aside, footer {
+        padding: 10px;
+    }
+    
+    /* Further reduce font sizes */
+    header h1 {
+        font-size: 21px;
+    }
+    
+    main h2 {
+        font-size: 19px;
+    }
+    
+    main h3, aside h3 {
+        font-size: 16px;
+    }
+    
+    p {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #myText {
+            font-size: 24px;
+            padding: 10px;
+            margin: 20px;
+            display: inline-block;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Spencer Ernst - Web Tech - DOM Manipulation</h1>
+    
+    <p id="myText">This text will change background color when you click the button!</p>
+    
+    <button id="changeTextBtn">Change Text Background</button>
+    <button id="changePageBtn">Change Page Background</button>
+
+    <script>
+        document.getElementById("changeTextBtn").onclick = function() {
+            document.getElementById("myText").style.backgroundColor = "yellow";
+        }
+        
+        document.getElementById("changePageBtn").onclick = function() {
+            document.body.style.backgroundColor = "lightblue";
+        }
+    </script>
+</body>
+</html>

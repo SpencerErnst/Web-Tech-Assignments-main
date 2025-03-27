@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS:GO Skins - Dropdown Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lab12styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="Lab11index.html">Home</a>
+        <a href="Lab2firstAI.html">First AI Page</a>
+        
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown()">CS:GO Skins
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="#">AK-47 Skins</a>
+                <a href="#">AWP Skins</a>
+                <a href="#">Knife Skins</a>
+            </div>
+        </div>
+        
+        <a href="Lab3favorites.html">Favorites</a>
+        <a href="Lab10index.html">Media Queries</a>
+    </div>
+
+    <div class="content">
+        <h2>CS:GO Skin Market Guide</h2>
+        <p>Click on the "CS:GO Skins" button in the navigation bar to see the dropdown menu.</p>
+        
+        <div class="intro">
+            <p>CS:GO skins are virtual items that change the appearance of weapons in the game. Some skins have become valuable collector's items and investment opportunities.</p>
+        </div>
+        
+        <div class="featured-skins">
+            <h3>Featured Skins</h3>
+            <div class="skin-grid">
+                <div class="skin-card">
+                    <img src="images/dragonLore.jpg" alt="AWP Dragon Lore">
+                    <h4>AWP | Dragon Lore</h4>
+                    <p>One of the most expensive and sought-after skins in CS:GO history.</p>
+                </div>
+                <div class="skin-card">
+                    <img src="images/knife-crimson-web.jpg" alt="Crimson Web Knife">
+                    <h4>Butterfly Knife | Crimson Web</h4>
+                    <p>A premium knife skin with a distinctive web pattern.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="market-tips">
+            <h3>Investment Tips</h3>
+            <ul>
+                <li>Monitor major tournament schedules as skin prices often rise during events</li>
+                <li>Factory New condition typically commands higher prices</li>
+                <li>Limited edition skins from discontinued cases may increase in value</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function(e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
