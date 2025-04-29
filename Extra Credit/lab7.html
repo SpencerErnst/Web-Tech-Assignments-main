@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS:GO Skins Market Analysis</title>
+    <style>
+        /* Global styles */
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Navigation styling - using descendant selector */
+        .main-nav {
+            background-color: #333;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            margin-bottom: 20px;
+        }
+        
+        .main-nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .main-nav li {
+            float: left;
+        }
+        
+        /* Link styling - custom color and only underlined on hover */
+        .main-nav li a {
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .main-nav li a:hover {
+            background-color: #555;
+            text-decoration: underline;
+        }
+        
+        a {
+            color: #4a6da7;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: #2a3f5f;
+            text-decoration: underline;
+        }
+        
+        /* Responsive Hero section styling */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/knife-crimson-web.jpg');
+            height: 60vw; /* Responsive height based on viewport width */
+            max-height: 500px; /* Maximum height */
+            min-height: 250px; /* Minimum height */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        
+        .hero-text {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            width: 90%;
+            max-width: 800px;
+        }
+        
+        .hero-text h1 {
+            font-size: calc(24px + 2vw); /* Responsive font size */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-text p {
+            font-size: calc(14px + 0.8vw); /* Responsive font size */
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #e55c00;
+            text-decoration: none;
+            color: white;
+        }
+        
+        /* Heading styles - element selectors */
+        h1 {
+            font-family: 'Trebuchet MS', sans-serif;
+            font-size: 36px;
+            color: #2a3f5f;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            color: #5c8a8a;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 20px;
+            color: #4a6da7;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        
+        /* Content sections with image alignment */
+        .content-section {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            align-items: flex-start;
+        }
+        
+        .text-content {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 20px;
+        }
+        
+        .image-content {
+            flex: 0 0 auto;
+            width: 300px;
+            padding-left: 20px;
+        }
+        
+        .image-content img {
+            width: 100%;
+            height: auto;
+            border: 2px solid #2a3f5f;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        /* ID styling for intro paragraph */
+        #intro-paragraph {
+            font-weight: bold;
+            background-color: rgba(42, 63, 95, 0.1);
+            padding: 15px;
+            border-left: 4px solid #2a3f5f;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        /* Class styling for content paragraph */
+        .content-paragraph {
+            color: #555;
+            background-color: rgba(92, 138, 138, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        /* Image styling */
+        .featured-image {
+            border: 3px solid #2a3f5f;
+            border-radius: 8px;
+            padding: 5px;
+            margin: 15px 0;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Gallery styling */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        
+        .gallery img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            transition: transform 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        /* Unique feature: Image hover effect with scale transform */
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Footer styling */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+        
+        footer p {
+            margin: 5px 0;
+        }
+        
+        footer a {
+            color: #aad4ff;
+        }
+        
+        footer a:hover {
+            color: #ffffff;
+        }
+        
+        /* Responsive design for different screen sizes */
+        @media screen and (max-width: 768px) {
+            .content-section {
+                flex-direction: column;
+            }
+            
+            .text-content, .image-content {
+                width: 100%;
+                padding: 0;
+            }
+            
+            .image-content {
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .image-content img {
+                max-width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .gallery img {
+                max-width: 100%;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+            }
+            
+            .main-nav li {
+                float: none;
+            }
+            
+            .main-nav li a {
+                padding: 10px;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar with descendant selector -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Lab1.html">Lab 1: Basic HTML</a></li>
+            <li><a href="Lab2.html">Lab 2: AI Generated</a></li>
+            <li><a href="Lab3.html">Lab 3: Favorites</a></li>
+            <li><a href="Lab4.html">Lab 4: CSS Styling</a></li>
+            <li><a href="Lab7.html">Lab 7: Responsive Design</a></li>
+            <li><a href="Lab9.html">Lab 9: CSS Grid</a></li>
+            <li><a href="Lab12.html">Lab 12: Dropdown Menu</a></li>
+            <li><a href="Lab16.html">Lab 16: Bootstrap Components</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Responsive Hero section with image, text overlay and button -->
+    <div class="hero">
+        <div class="hero-text">
+            <h1>CS:GO Skins Market Analysis</h1>
+            <p>Your definitive guide to understanding the virtual weapon skin economy</p>
+            <a href="#market-info" class="btn">Start Trading</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2 id="market-info">Understanding CS:GO Skin Market</h2>
+        
+        <!-- Content section with text and image aligned right -->
+        <div class="content-section">
+            <div class="text-content">
+                <!-- Paragraph with ID styling -->
+                <p id="intro-paragraph">The CS:GO skin market represents a unique digital economy where virtual weapon skins can command significant real-world value. These cosmetic items vary in rarity, wear condition, and pattern, which directly influences their market price. Market trends show that rare knife skins and popular rifle skins, particularly for the AK-47 and M4A4, tend to maintain their value well over time.</p>
+                
+                <!-- Paragraph with CLASS styling -->
+                <p class="content-paragraph">Factors such as professional player usage, tournament events, and game updates can significantly impact skin prices. Understanding these dynamics helps traders make informed decisions about when to buy, sell, or hold specific items in their inventory. Through this site, we aim to provide <span style="color: #ff6600; font-weight: bold; text-decoration: underline;">comprehensive analysis and data</span> to help you navigate this complex marketplace.</p>
+            </div>
+            
+            <!-- Images aligned right -->
+            <div class="image-content">
+                <img src="images/butterflyKnife.jpg" alt="Butterfly Knife Skin">
+                <img src="images/dragonLore.jpg" alt="Dragon Lore AWP Skin">
+            </div>
+        </div>
+        
+        <h3>Contact Information</h3>
+        <p>Name: Spencer Ernst</p>
+        <p>Email: sernst2@babson.edu</p>
+        <p>Expected Graduation Year: 2026</p>
+        
+        <!-- Another content section with text and image aligned right -->
+        <div class="content-section">
+            <div class="text-content">
+                <h3>Factors Affecting Skin Prices:</h3>
+                <ul>
+                    <li>Rarity Tiers
+                        <ul>
+                            <li>Consumer Grade (White)</li>
+                            <li>Industrial Grade (Light Blue)</li>
+                            <li>Mil-Spec (Blue)</li>
+                            <li>Restricted (Purple)</li>
+                            <li>Classified (Pink)</li>
+                            <li>Covert (Red)</li>
+                        </ul>
+                    </li>
+                    <li>Wear Conditions
+                        <ul>
+                            <li>Factory New</li>
+                            <li>Minimal Wear</li>
+                            <li>Field-Tested</li>
+                            <li>Well-Worn</li>
+                            <li>Battle-Scarred</li>
+                        </ul>
+                    </li>
+                    <li>Special Attributes
+                        <ul>
+                            <li>StatTrak™ Technology</li>
+                            <li>Souvenir Status</li>
+                            <li>Special Patterns</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Another set of images aligned right -->
+            <div class="image-content">
+                <img src="images/ak47-skin.jpg" alt="AK-47 Skin">
+                <img src="images/knife-crimson-web.jpg" alt="Crimson Web Knife">
+            </div>
+        </div>
+        
+        <h2>Featured CS:GO Skins</h2>
+        <div class="gallery">
+            <img src="images/ak47-skin.jpg" alt="AK-47 Skin">
+            <img src="images/knife-crimson-web.jpg" alt="Crimson Web Knife">
+            <img src="images/butterflyKnife.jpg" alt="Butterfly Knife">
+            <img src="images/dragonLore.jpg" alt="Dragon Lore">
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 CS:GO Skins Market Analysis. All rights reserved.</p>
+        <p>Created by Spencer Ernst</p>
+        <p>Contact: <a href="mailto:sernst2@babson.edu">sernst2@babson.edu</a></p>
+    </footer>
+</body>
+</html>

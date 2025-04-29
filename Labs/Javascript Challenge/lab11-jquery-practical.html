@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS:GO Skin Investment Tool</title>
+    
+    <!-- jQuery CDN reference (version 3.7.1) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- jQuery UI CDN reference (version 1.14.1) -->
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/smoothness/jquery-ui.css">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #2a3f5f;
+            border-bottom: 2px solid #2a3f5f;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #5c8a8a;
+        }
+        
+        /* Style for the tabs widget */
+        #investment-tabs {
+            margin-top: 20px;
+        }
+        
+        /* Style for the datepicker */
+        .date-selector {
+            margin: 20px 0;
+        }
+        
+        /* Style for the slider */
+        #price-slider {
+            margin: 30px 10px;
+        }
+        
+        .price-range-display {
+            margin: 10px 0;
+            font-weight: bold;
+            color: #2a3f5f;
+        }
+        
+        /* Style for the autocomplete */
+        #skin-search {
+            width: 300px;
+            padding: 8px;
+            margin: 20px 0;
+        }
+        
+        /* Style for tooltips */
+        .ui-tooltip {
+            padding: 8px;
+            background: #2a3f5f;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            font-size: 14px;
+        }
+        
+        /* Styling for the accordion */
+        .ui-accordion-header {
+            background-color: #2a3f5f;
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 3px;
+        }
+        
+        .ui-accordion-header:hover {
+            background-color: #3a5f8f;
+        }
+        
+        .ui-accordion-content {
+            padding: 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+        
+        /* Style for buttons */
+        button {
+            background-color: #2a3f5f;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #3a5f8f;
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CS:GO Skin Investment Tool</h1>
+        
+        <!-- Search with autocomplete -->
+        <div>
+            <label for="skin-search">Search for a skin: </label>
+            <input id="skin-search" placeholder="Type a skin name...">
+        </div>
+        
+        <!-- Date picker -->
+        <div class="date-selector">
+            <label for="investment-date">Select investment date: </label>
+            <input type="text" id="investment-date">
+        </div>
+        
+        <!-- Tabs interface -->
+        <div id="investment-tabs">
+            <ul>
+                <li><a href="#market-data">Market Data</a></li>
+                <li><a href="#investment-calculator">Investment Calculator</a></li>
+                <li><a href="#tips-tricks">Tips & Tricks</a></li>
+            </ul>
+            
+            <!-- Market Data Tab -->
+            <div id="market-data">
+                <h2>Current Market Prices</h2>
+                
+                <!-- Price range slider -->
+                <div>
+                    <p>Filter by price range:</p>
+                    <div id="price-slider"></div>
+                    <p class="price-range-display">Price range: <span id="price-range">$50 - $500</span></p>
+                </div>
+                
+                <!-- Accordion for skin categories -->
+                <div id="skin-categories">
+                    <h3>Knife Skins</h3>
+                    <div>
+                        <p><strong title="High demand skin with consistent price growth">Butterfly Knife | Fade</strong> - Current price: $850.75</p>
+                        <p><strong title="Popular pattern with limited supply">Karambit | Crimson Web</strong> - Current price: $925.75</p>
+                        <button id="show-knife-dialog">View Market Analysis</button>
+                    </div>
+                    
+                    <h3>Rifle Skins</h3>
+                    <div>
+                        <p><strong title="Highly sought after by collectors">AWP | Dragon Lore</strong> - Current price: $1,925.50</p>
+                        <p><strong title="Consistent performer with steady growth">AK-47 | Asiimov</strong> - Current price: $142.00</p>
+                        <button id="show-rifle-dialog">View Market Analysis</button>
+                    </div>
+                    
+                    <h3>Pistol Skins</h3>
+                    <div>
+                        <p><strong title="Limited availability due to discontinued case">Glock-18 | Fade</strong> - Current price: $325.25</p>
+                        <p><strong title="Popular playing skin with good liquidity">USP-S | Kill Confirmed</strong> - Current price: $92.60</p>
+                        <button id="show-pistol-dialog">View Market Analysis</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Investment Calculator Tab -->
+            <div id="investment-calculator">
+                <h2>Investment Return Calculator</h2>
+                <p>Use the sliders below to calculate potential returns on your investments.</p>
+                
+                <div>
+                    <label for="investment-slider">Initial Investment ($):</label>
+                    <div id="investment-slider"></div>
+                    <p>Investment amount: <span id="investment-amount">$500</span></p>
+                </div>
+                
+                <div>
+                    <label for="duration-slider">Investment Duration (months):</label>
+                    <div id="duration-slider"></div>
+                    <p>Duration: <span id="duration-value">6 months</span></p>
+                </div>
+                
+                <div>
+                    <label for="return-slider">Expected Annual Return (%):</label>
+                    <div id="return-slider"></div>
+                    <p>Annual return: <span id="return-value">12%</span></p>
+                </div>
+                
+                <div id="result-container" style="margin-top: 20px; background-color: #e6f7ff; padding: 15px; border-radius: 5px;">
+                    <h3>Projected Results</h3>
+                    <p>Initial Investment: <span id="init-investment">$500.00</span></p>
+                    <p>Projected Value: <span id="projected-value">$530.00</span></p>
+                    <p>Net Profit: <span id="net-profit">$30.00</span></p>
+                </div>
+                
+                <button id="calculate-btn">Calculate</button>
+                <button id="reset-btn">Reset</button>
+            </div>
+            
+            <!-- Tips & Tricks Tab -->
+            <div id="tips-tricks">
+                <h2>Investment Tips & Tricks</h2>
+                
+                <div id="investment-tips-accordion">
+                    <h3>Best Time to Buy Skins</h3>
+                    <div>
+                        <p>Prices typically drop during major Steam sales when players sell skins to buy games. This is often the best time to buy.</p>
+                        <p>Also consider buying shortly after a new case release, as older skins may temporarily dip in price.</p>
+                    </div>
+                    
+                    <h3>Factors Affecting Skin Value</h3>
+                    <div>
+                        <p>Three main factors determine a skin's investment potential:</p>
+                        <ul>
+                            <li>Rarity (higher tier = better investment)</li>
+                            <li>Wear rating (Factory New typically holds value best)</li>
+                            <li>Pattern rarity (special patterns command premium prices)</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Long-term Investment Strategy</h3>
+                    <div>
+                        <p>For long-term investments (6+ months), focus on:</p>
+                        <ul>
+                            <li>Discontinued skins from removed cases</li>
+                            <li>Tournament stickers from major events</li>
+                            <li>Skins with consistent player demand</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Hidden dialog for market analysis -->
+        <div id="market-analysis-dialog" title="Market Analysis" style="display:none;">
+            <div id="dialog-content"></div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2025 CS:GO Skins Market Analysis. Created by Spencer Ernst | sernst2@babson.edu</p>
+        </footer>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            // Initialize tabs
+            $("#investment-tabs").tabs();
+            
+            // Initialize datepicker
+            $("#investment-date").datepicker({
+                dateFormat: "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            
+            // Initialize accordion for skin categories
+            $("#skin-categories").accordion({
+                collapsible: true,
+                heightStyle: "content"
+            });
+            
+            // Initialize accordion for investment tips
+            $("#investment-tips-accordion").accordion({
+                collapsible: true,
+                heightStyle: "content"
+            });
+            
+            // Initialize price range slider
+            $("#price-slider").slider({
+                range: true,
+                min: 0,
+                max: 2000,
+                values: [50, 500],
+                slide: function(event, ui) {
+                    $("#price-range").text("$" + ui.values[0] + " - $" + ui.values[1]);
+                }
+            });
+            
+            // Initialize investment amount slider
+            $("#investment-slider").slider({
+                min: 100,
+                max: 5000,
+                value: 500,
+                step: 100,
+                slide: function(event, ui) {
+                    $("#investment-amount").text("$" + ui.value);
+                    updateCalculation();
+                }
+            });
+            
+            // Initialize duration slider
+            $("#duration-slider").slider({
+                min: 1,
+                max: 24,
+                value: 6,
+                slide: function(event, ui) {
+                    $("#duration-value").text(ui.value + " months");
+                    updateCalculation();
+                }
+            });
+            
+            // Initialize return rate slider
+            $("#return-slider").slider({
+                min: 0,
+                max: 30,
+                value: 12,
+                slide: function(event, ui) {
+                    $("#return-value").text(ui.value + "%");
+                    updateCalculation();
+                }
+            });
+            
+            // Initialize tooltips
+            $("strong[title]").tooltip();
+            
+            // Initialize dialog
+            $("#market-analysis-dialog").dialog({
+                autoOpen: false,
+                modal: true,
+                width: 500,
+                height: 400
+            });
+            
+            // Bind click events to dialog buttons
+            $("#show-knife-dialog").on("click", function() {
+                $("#dialog-content").html(`
+                    <h3>Knife Skins Market Analysis</h3>
+                    <p>Knife skins continue to be the most stable investment category in CS:GO. Key trends:</p>
+                    <ul>
+                        <li>High-tier knives (Butterfly, Karambit) have shown 10-15% annual appreciation</li>
+                        <li>Factory New condition with rare patterns command premium prices</li>
+                        <li>Market liquidity remains high, with consistent demand</li>
+                    </ul>
+                    <p>Recommendation: <strong>Strong Buy</strong> for long-term investment</p>
+                `);
+                $("#market-analysis-dialog").dialog("open");
+            });
+            
+            $("#show-rifle-dialog").on("click", function() {
+                $("#dialog-content").html(`
+                    <h3>Rifle Skins Market Analysis</h3>
+                    <p>Rifle skins show mixed investment potential:</p>
+                    <ul>
+                        <li>High-end skins (Dragon Lore, Howl) consistently appreciate due to rarity</li>
+                        <li>Mid-tier skins have experienced volatility with game updates</li>
+                        <li>New case releases have impacted older skin values</li>
+                    </ul>
+                    <p>Recommendation: <strong>Selective Buy</strong> focused on discontinued collections</p>
+                `);
+                $("#market-analysis-dialog").dialog("open");
+            });
+            
+            $("#show-pistol-dialog").on("click", function() {
+                $("#dialog-content").html(`
+                    <h3>Pistol Skins Market Analysis</h3>
+                    <p>Pistol skins offer entry-level investment opportunities:</p>
+                    <ul>
+                        <li>Lower entry point with moderate growth potential</li>
+                        <li>Higher liquidity but more price volatility</li>
+                        <li>Certain rare patterns show strong collector demand</li>
+                    </ul>
+                    <p>Recommendation: <strong>Hold</strong> existing investments, selective buying</p>
+                `);
+                $("#market-analysis-dialog").dialog("open");
+            });
+            
+            // Calculate button functionality
+            $("#calculate-btn").on("click", function() {
+                updateCalculation();
+            });
+            
+            // Reset button functionality
+            $("#reset-btn").on("click", function() {
+                $("#investment-slider").slider("value", 500);
+                $("#investment-amount").text("$500");
+                
+                $("#duration-slider").slider("value", 6);
+                $("#duration-value").text("6 months");
+                
+                $("#return-slider").slider("value", 12);
+                $("#return-value").text("12%");
+                
+                updateCalculation();
+            });
+            
+            // Function to update calculation
+            function updateCalculation() {
+                const investment = $("#investment-slider").slider("value");
+                const duration = $("#duration-slider").slider("value");
+                const annualReturn = $("#return-slider").slider("value");
+                
+                // Calculate monthly return rate
+                const monthlyRate = (annualReturn / 100) / 12;
+                
+                // Calculate future value
+                const futureValue = investment * Math.pow(1 + monthlyRate, duration);
+                const profit = futureValue - investment;
+                
+                // Update the display
+                $("#init-investment").text("$" + investment.toFixed(2));
+                $("#projected-value").text("$" + futureValue.toFixed(2));
+                $("#net-profit").text("$" + profit.toFixed(2));
+                
+                // Color code the profit based on value
+                if (profit > 0) {
+                    $("#net-profit").css("color", "green");
+                } else if (profit < 0) {
+                    $("#net-profit").css("color", "red");
+                } else {
+                    $("#net-profit").css("color", "black");
+                }
+            }
+            
+            // Initialize the calculation
+            updateCalculation();
+            
+            // Autocomplete for skin search
+            const availableSkins = [
+                "AK-47 | Asiimov",
+                "AK-47 | Bloodsport",
+                "AK-47 | Vulcan",
+                "AWP | Dragon Lore",
+                "AWP | Asiimov",
+                "AWP | Wildfire",
+                "Butterfly Knife | Fade",
+                "Butterfly Knife | Doppler",
+                "Desert Eagle | Blaze",
+                "Glock-18 | Fade",
+                "Karambit | Crimson Web",
+                "Karambit | Marble Fade",
+                "M4A4 | Howl",
+                "M4A1-S | Hyper Beast",
+                "USP-S | Kill Confirmed"
+            ];
+            
+            $("#skin-search").autocomplete({
+                source: availableSkins,
+                minLength: 2
+            });
+        });
+    </script>
+</body>
+</html>

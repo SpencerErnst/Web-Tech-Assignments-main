@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Minimal Password Strength Indicator Demos</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/solar/bootstrap.min.css">
+<link rel="stylesheet" href="jquery.password-indicator.css" />
+<style>
+  .container { margin: 150px auto; }
+  h2 { margin: 1.25rem auto; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Minimal Password Strength Indicator Demos</h1>
+    <p class="lead">A minimalist jQuery plugin that visualizes the strength of a password a user enters into a password input field.</p>
+    <h2>Default</h2>
+    <input type="password" id="password1" class="form-control" />
+    <hr>
+    <h2>Scores > 30</h2>
+    <input type="password" id="password2" class="form-control" />
+</form>
+  </div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="jquery.password-indicator.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#password1").PasswordIndicator();
+        $("#password2").PasswordIndicator({
+          secureStrength: 30
+        });
+    });
+</script>
+</body>
+</html>

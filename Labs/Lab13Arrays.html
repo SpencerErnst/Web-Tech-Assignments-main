@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS:GO Skins - Price History Tracker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            color: #2a3f5f;
+            text-align: center;
+            border-bottom: 2px solid #2a3f5f;
+            padding-bottom: 10px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .current-date {
+            text-align: right;
+            color: #5c8a8a;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .price-table th, .price-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .price-table th {
+            background-color: #2a3f5f;
+            color: white;
+        }
+        
+        .price-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .price-table tr:hover {
+            background-color: #e6f7ff;
+        }
+        
+        .price-increase {
+            color: #4CAF50;
+        }
+        
+        .price-decrease {
+            color: #F44336;
+        }
+        
+        .price-stable {
+            color: #FF9800;
+        }
+        
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CS:GO Skins Price History Tracker</h1>
+        
+        <!-- Current date will be displayed here using JavaScript -->
+        <div class="current-date" id="current-date"></div>
+        
+        <!-- Table will be populated using JavaScript array and loop -->
+        <table class="price-table">
+            <thead>
+                <tr>
+                    <th>Skin Name</th>
+                    <th>Category</th>
+                    <th>Wear Condition</th>
+                    <th>Previous Price</th>
+                    <th>Current Price</th>
+                    <th>Price Change</th>
+                </tr>
+            </thead>
+            <tbody id="price-data">
+                <!-- Table rows will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+        
+        <footer>
+            <p>&copy; 2025 CS:GO Skins Market Analysis. Created by Spencer Ernst.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Display current date
+        function displayCurrentDate() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').textContent = "Market data as of: " + now.toLocaleDateString('en-US', options);
+        }
+        
+        // Array of skin price data
+        const skinPrices = [
+            { name: "AWP | Dragon Lore", category: "Sniper Rifle", wear: "Factory New", prevPrice: 1850.00, currentPrice: 1925.50 },
+            { name: "Karambit | Crimson Web", category: "Knife", wear: "Minimal Wear", prevPrice: 950.25, currentPrice: 925.75 },
+            { name: "AK-47 | Asiimov", category: "Rifle", wear: "Field-Tested", prevPrice: 125.50, currentPrice: 142.00 },
+            { name: "M4A4 | Howl", category: "Rifle", wear: "Factory New", prevPrice: 1450.00, currentPrice: 1450.00 },
+            { name: "Butterfly Knife | Fade", category: "Knife", wear: "Factory New", prevPrice: 785.25, currentPrice: 850.75 },
+            { name: "Glock-18 | Fade", category: "Pistol", wear: "Factory New", prevPrice: 352.50, currentPrice: 325.25 },
+            { name: "USP-S | Kill Confirmed", category: "Pistol", wear: "Minimal Wear", prevPrice: 85.40, currentPrice: 92.60 },
+            { name: "P90 | Asiimov", category: "SMG", wear: "Field-Tested", prevPrice: 12.25, currentPrice: 11.50 }
+        ];
+
+        // Function to populate the table with skin price data
+        function populatePriceTable() {
+            const tableBody = document.getElementById('price-data');
+            
+            // Loop through the array to create table rows
+            for (let i = 0; i < skinPrices.length; i++) {
+                const skin = skinPrices[i];
+                
+                // Calculate price change and determine status class
+                const priceChange = skin.currentPrice - skin.prevPrice;
+                let statusClass = "price-stable";
+                
+                if (priceChange > 0) {
+                    statusClass = "price-increase";
+                } else if (priceChange < 0) {
+                    statusClass = "price-decrease";
+                }
+                
+                // Create table row
+                const row = document.createElement('tr');
+                
+                // Populate row with cells
+                row.innerHTML = `
+                    <td>${skin.name}</td>
+                    <td>${skin.category}</td>
+                    <td>${skin.wear}</td>
+                    <td>$${skin.prevPrice.toFixed(2)}</td>
+                    <td>$${skin.currentPrice.toFixed(2)}</td>
+                    <td class="${statusClass}">$${Math.abs(priceChange).toFixed(2)} ${priceChange > 0 ? '↑' : priceChange < 0 ? '↓' : '→'}</td>
+                `;
+                
+                // Add row to table
+                tableBody.appendChild(row);
+            }
+        }
+        
+        // Initialize page
+        window.onload = function() {
+            displayCurrentDate();
+            populatePriceTable();
+        };
+    </script>
+</body>
+</html>

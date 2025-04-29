@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS:GO Skins Market Analysis</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styling to maintain site's identity */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #333;
+        }
+        
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/knife-crimson-web.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+        }
+        
+        .featured-image {
+            border: 3px solid #2a3f5f;
+            border-radius: 8px;
+        }
+        
+        .card {
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .footer {
+            background-color: #333;
+            color: #fff;
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">CS:GO Market</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Lab2firstAI.html">First AI Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Lab3favorites.html">Favorites</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Lab1index.html">Original Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Collections
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Knife Collections</a></li>
+                            <li><a class="dropdown-item" href="#">Rifle Skins</a></li>
+                            <li><a class="dropdown-item" href="#">Pistol Skins</a></li>
+                            <li><a class="dropdown-item" href="#">SMG Collections</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with CTA Button using Bootstrap -->
+    <div class="hero-section d-flex align-items-center text-white">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold text-shadow">CS:GO Skins Market Analysis</h1>
+            <p class="lead text-shadow">Your definitive guide to understanding the virtual weapon skin economy</p>
+            <a href="#market-info" class="btn btn-warning btn-lg mt-3">Start Trading</a>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="container my-5">
+        <h2 id="market-info" class="mb-4 text-center">Understanding CS:GO Skin Market</h2>
+        
+        <!-- Using Bootstrap grid for responsive layout -->
+        <div class="row mb-5">
+            <div class="col-lg-8">
+                <div class="p-4 bg-light rounded">
+                    <p class="fw-bold">The CS:GO skin market represents a unique digital economy where virtual weapon skins can command significant real-world value. These cosmetic items vary in rarity, wear condition, and pattern, which directly influences their market price. Market trends show that rare knife skins and popular rifle skins, particularly for the AK-47 and M4A4, tend to maintain their value well over time.</p>
+                    
+                    <p class="text-muted">Factors such as professional player usage, tournament events, and game updates can significantly impact skin prices. Understanding these dynamics helps traders make informed decisions about when to buy, sell, or hold specific items in their inventory.</p>
+                </div>
+                
+                <!-- Contact information with Bootstrap card -->
+                <div class="card mt-4">
+                    <div class="card-header bg-dark text-white">
+                        <h3 class="h5 mb-0">Contact Information</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text mb-1">Name: Spencer Ernst</p>
+                        <p class="card-text mb-1">Email: sernst2@babson.edu</p>
+                        <p class="card-text">Expected Graduation Year: 2026</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar with Bootstrap -->
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h3 class="h5 mb-0">Featured Skins</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Bootstrap responsive images -->
+                        <img src="images/knife-crimson-web.jpg" alt="Crimson Web Knife Skin" class="img-fluid rounded mb-3">
+                        <p class="card-text">The Crimson Web skin pattern is among the most sought-after designs for knife collectors.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bootstrap Pricing cards with images -->
+        <h3 class="text-center mb-4">Top Skin Collections</h3>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-5">
+            <!-- Card 1 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/ak47-skin.jpg" class="card-img-top" alt="AK-47 Skin">
+                    <div class="card-body">
+                        <h5 class="card-title">Rifle Collection</h5>
+                        <p class="card-text">Popular AK-47 and M4A4 skins that maintain their value over time.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Starting at $10</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/knife-crimson-web.jpg" class="card-img-top" alt="Crimson Web Knife">
+                    <div class="card-body">
+                        <h5 class="card-title">Knife Collection</h5>
+                        <p class="card-text">Exclusive knife skins with various patterns and wear ratings.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Starting at $60</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/butterflyKnife.jpg" class="card-img-top" alt="Butterfly Knife">
+                    <div class="card-body">
+                        <h5 class="card-title">Butterfly Knives</h5>
+                        <p class="card-text">Highly sought-after butterfly knife skins with animation effects.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Starting at $150</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 4 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/dragonLore.jpg" class="card-img-top" alt="Dragon Lore">
+                    <div class="card-body">
+                        <h5 class="card-title">AWP Collection</h5>
+                        <p class="card-text">Premium AWP skins including the legendary Dragon Lore.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Starting at $30</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bootstrap Image carousel -->
+        <h3 class="text-center mb-4">Featured Gallery</h3>
+        <div id="skinCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#skinCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#skinCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#skinCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#skinCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner rounded">
+                <div class="carousel-item active">
+                    <img src="images/ak47-skin.jpg" class="d-block w-100" alt="AK-47 Skin">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>AK-47 Skins</h5>
+                        <p>The most popular rifle skins in CS:GO</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/knife-crimson-web.jpg" class="d-block w-100" alt="Crimson Web Knife">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Crimson Web Knife</h5>
+                        <p>A premium knife skin with unique web pattern</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/butterflyKnife.jpg" class="d-block w-100" alt="Butterfly Knife">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Butterfly Knife</h5>
+                        <p>Known for its distinctive animation and design</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/dragonLore.jpg" class="d-block w-100" alt="Dragon Lore">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Dragon Lore AWP</h5>
+                        <p>One of the most expensive skins in CS:GO</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#skinCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#skinCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer with Bootstrap -->
+    <footer class="footer py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-1">&copy; 2025 CS:GO Skins Market Analysis. All rights reserved.</p>
+            <p class="mb-1">Created by Spencer Ernst</p>
+            <p class="mb-0">Contact: <a href="mailto:sernst2@babson.edu" class="text-light">sernst2@babson.edu</a></p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

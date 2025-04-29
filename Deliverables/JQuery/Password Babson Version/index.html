@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babson College Portal - Password Strength</title>
+    <!-- Include jQuery from CDN -->
+   <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            max-width: 150px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            color: #006644; /* Babson Green */
+            margin-bottom: 5px;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #006644; /* Babson Green */
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .meter-container {
+            margin-bottom: 20px;
+        }
+        
+        .password-meter {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        
+        .strength-bar {
+            height: 100%;
+            width: 0;
+            transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        }
+        
+        .strength-text {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .requirements {
+            font-size: 13px;
+            color: #666;
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        
+        .requirements li {
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="babson.png" alt="Babson College" class="logo">
+        <h1>Babson College</h1>
+        <p>Password Strength Demonstration</p>
+    </div>
+    
+    <div class="container">
+        <h2>Password Strength Meter</h2>
+        <p>Type a password to see its strength:</p>
+        
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter a password">
+            
+            <div class="meter-container">
+                <div class="password-meter">
+                    <div class="strength-bar" id="strength-bar"></div>
+                </div>
+                <div class="strength-text" id="strength-text">Password strength: Enter a password</div>
+            </div>
+            
+            <div class="requirements">
+                <p>For a strong password, include:</p>
+                <ul>
+                    <li id="length">At least 8 characters</li>
+                    <li id="uppercase">Uppercase letters (A-Z)</li>
+                    <li id="lowercase">Lowercase letters (a-z)</li>
+                    <li id="numbers">Numbers (0-9)</li>
+                    <li id="special">Special characters (!@#$%^&*)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Include our JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
